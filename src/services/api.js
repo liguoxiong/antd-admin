@@ -5,14 +5,20 @@ export default {
   logoutUser: '/user/logout',
   loginUser: 'POST /user/login',
 
-  queryUser: '/user/:id',
-  queryUserList: '/users',
-  updateUser: 'Patch /user/:id',
-  createUser: 'POST /user',
-  removeUser: 'DELETE /user/:id',
-  removeUserList: 'POST /users/delete',
+  queryProduct: '/products/:id',
+  queryProductList: '/products',
+  updateProduct: 'PUT /products/:id',
+  createProduct: 'POST /products',
+  removeProduct: 'DELETE /products/:id',
+  removeProductList: 'POST /products/delete',
 
   queryPostList: '/posts',
 
   queryDashboard: '/dashboard',
+
+  queryCategoryList: '/categories',
+  createCategory: 'POST /categories',
+  queryCategory: '/categories/:id',
+  updateCategory: 'PUT /categories/:id',
+  removeCategory: 'DELETE /categories/:id',
 }

@@ -4,6 +4,8 @@ import pathToRegexp from 'path-to-regexp'
 import { message } from 'antd'
 import { CANCEL_REQUEST_MESSAGE } from 'utils/constant'
 import qs from 'qs'
+axios.defaults.headers.post['x-access-token'] =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZDc5ZDE5YzFiNmY3NDYyM2Y2NGY2M2IiLCJpYXQiOjE1NjgzMDQ1NTN9.tJLuSoaM5S_FS72dm46NGdT2aJ8c1tBKMjRN_bLQYw0'
 
 const { CancelToken } = axios
 window.cancelRequest = new Map()
@@ -34,7 +36,9 @@ export default function request(options) {
   }
 
   options.url = url
-  options.params = cloneData
+  if (method === 'get') {
+    options.params = cloneData
+  }
   options.cancelToken = new CancelToken(cancel => {
     window.cancelRequest.set(Symbol(Date.now()), {
       pathname: window.location.pathname,

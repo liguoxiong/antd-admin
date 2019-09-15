@@ -4,15 +4,15 @@ import api from 'api'
 import { pageModel } from 'utils/model'
 
 const {
-  queryUserList,
-  createUser,
-  removeUser,
-  updateUser,
-  removeUserList,
+  queryCategoryList,
+  createCategory,
+  removeCategory,
+  updateCategory,
+  removeCategoryList,
 } = api
 
 export default modelExtend(pageModel, {
-  namespace: 'user',
+  namespace: 'category',
 
   state: {
     currentItem: {},
@@ -24,7 +24,7 @@ export default modelExtend(pageModel, {
   subscriptions: {
     setup({ dispatch, history }) {
       history.listen(location => {
-        if (pathMatchRegexp('/user', location.pathname)) {
+        if (pathMatchRegexp('/category', location.pathname)) {
           const payload = location.query || { page: 1, pageSize: 10 }
           dispatch({
             type: 'query',
@@ -37,7 +37,7 @@ export default modelExtend(pageModel, {
 
   effects: {
     *query({ payload = {} }, { call, put }) {
-      const data = yield call(queryUserList, payload)
+      const data = yield call(queryCategoryList, payload)
       if (data) {
         yield put({
           type: 'querySuccess',
@@ -54,8 +54,8 @@ export default modelExtend(pageModel, {
     },
 
     *delete({ payload }, { call, put, select }) {
-      const data = yield call(removeUser, { id: payload })
-      const { selectedRowKeys } = yield select(_ => _.user)
+      const data = yield call(removeCategory, { id: payload })
+      const { selectedRowKeys } = yield select(_ => _.category)
       if (data.success) {
         yield put({
           type: 'updateState',
@@ -69,7 +69,7 @@ export default modelExtend(pageModel, {
     },
 
     *multiDelete({ payload }, { call, put }) {
-      const data = yield call(removeUserList, payload)
+      const data = yield call(removeCategoryList, payload)
       if (data.success) {
         yield put({ type: 'updateState', payload: { selectedRowKeys: [] } })
       } else {
@@ -78,7 +78,7 @@ export default modelExtend(pageModel, {
     },
 
     *create({ payload }, { call, put }) {
-      const data = yield call(createUser, payload)
+      const data = yield call(createCategory, payload)
       if (data.success) {
         yield put({ type: 'hideModal' })
       } else {
@@ -87,9 +87,9 @@ export default modelExtend(pageModel, {
     },
 
     *update({ payload }, { select, call, put }) {
-      const id = yield select(({ user }) => user.currentItem.id)
-      const newUser = { ...payload, id }
-      const data = yield call(updateUser, newUser)
+      const id = yield select(({ category }) => category.currentItem._id)
+      const newCategory = { id, ...payload }
+      const data = yield call(updateCategory, newCategory)
       if (data.success) {
         yield put({ type: 'hideModal' })
       } else {

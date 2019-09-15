@@ -1,8 +1,8 @@
 module.exports = {
-  siteName: 'AntD Admin',
-  copyright: 'Ant Design Admin  ©2019 zuiidea',
+  siteName: 'Kunio Admin',
+  copyright: 'Kunio Design Admin  ©2019 liguoxiong',
   logoPath: '/logo.svg',
-  apiPrefix: '/api/v1',
+  apiPrefix: '/api',
   fixedHeader: true, // sticky primary layout header
 
   /* Layout configuration, specify which layout to use for route. */

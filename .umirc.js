@@ -60,9 +60,9 @@ export default {
         },
         pwa: {
           manifestOptions: {
-            srcPath: 'manifest.json'
+            srcPath: 'manifest.json',
           },
-        }
+        },
       },
     ],
   ],
@@ -71,10 +71,15 @@ export default {
   theme: './config/theme.config.js',
   // Webpack Configuration
   proxy: {
-    '/api/v1/weather': {
-      target: 'https://api.seniverse.com/',
+    // '/api': {
+    //   target: 'https://api.seniverse.com/',
+    //   changeOrigin: true,
+    //   pathRewrite: { '^/api/v1/weather': '/v3/weather' },
+    // },
+    '/api': {
+      target: 'http://localhost:8080/',
       changeOrigin: true,
-      pathRewrite: { '^/api/v1/weather': '/v3/weather' },
+      pathRewrite: { '^/api': '/api' },
     },
   },
   alias: {

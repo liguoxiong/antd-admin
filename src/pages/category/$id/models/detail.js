@@ -1,7 +1,7 @@
 import { pathMatchRegexp } from 'utils'
 import api from 'api'
 
-const { queryUser } = api
+const { queryCategory } = api
 
 export default {
   namespace: 'userDetail',
@@ -13,7 +13,7 @@ export default {
   subscriptions: {
     setup({ dispatch, history }) {
       history.listen(({ pathname }) => {
-        const match = pathMatchRegexp('/user/:id', pathname)
+        const match = pathMatchRegexp('/categories/:id', pathname)
         if (match) {
           dispatch({ type: 'query', payload: { id: match[1] } })
         }
@@ -23,7 +23,7 @@ export default {
 
   effects: {
     *query({ payload }, { call, put }) {
-      const data = yield call(queryUser, payload)
+      const data = yield call(queryCategory, payload)
       const { success, message, status, ...other } = data
       if (success) {
         yield put({

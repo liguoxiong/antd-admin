@@ -19,7 +19,7 @@ class List extends PureComponent {
       confirm({
         title: i18n.t`Are you sure delete this record?`,
         onOk() {
-          onDeleteItem(record.id)
+          onDeleteItem(record._id)
         },
       })
     }
@@ -30,54 +30,30 @@ class List extends PureComponent {
 
     const columns = [
       {
-        title: <Trans>Avatar</Trans>,
-        dataIndex: 'avatar',
-        key: 'avatar',
+        title: <Trans>Image</Trans>,
+        dataIndex: 'image',
+        key: 'image',
         width: 72,
         fixed: 'left',
         render: text => <Avatar style={{ marginLeft: 8 }} src={text} />,
       },
       {
-        title: <Trans>Name</Trans>,
-        dataIndex: 'name',
-        key: 'name',
-        render: (text, record) => <Link to={`user/${record.id}`}>{text}</Link>,
+        title: <Trans>Title</Trans>,
+        dataIndex: 'title',
+        key: 'title',
+        render: (text, record) => (
+          <Link to={`category/${record._id}`}>{text}</Link>
+        ),
       },
       {
-        title: <Trans>NickName</Trans>,
-        dataIndex: 'nickName',
-        key: 'nickName',
+        title: <Trans>Description</Trans>,
+        dataIndex: 'description',
+        key: 'description',
       },
       {
-        title: <Trans>Age</Trans>,
-        dataIndex: 'age',
-        key: 'age',
-      },
-      {
-        title: <Trans>Gender</Trans>,
-        dataIndex: 'isMale',
-        key: 'isMale',
-        render: text => <span>{text ? 'Male' : 'Female'}</span>,
-      },
-      {
-        title: <Trans>Phone</Trans>,
-        dataIndex: 'phone',
-        key: 'phone',
-      },
-      {
-        title: <Trans>Email</Trans>,
-        dataIndex: 'email',
-        key: 'email',
-      },
-      {
-        title: <Trans>Address</Trans>,
-        dataIndex: 'address',
-        key: 'address',
-      },
-      {
-        title: <Trans>CreateTime</Trans>,
-        dataIndex: 'createTime',
-        key: 'createTime',
+        title: <Trans>CreateAt</Trans>,
+        dataIndex: 'created_at',
+        key: 'created_at',
       },
       {
         title: <Trans>Operation</Trans>,
@@ -109,7 +85,7 @@ class List extends PureComponent {
         scroll={{ x: 1200 }}
         columns={columns}
         simple
-        rowKey={record => record.id}
+        rowKey={record => record._id}
       />
     )
   }

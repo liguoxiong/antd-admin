@@ -11,8 +11,14 @@ import Filter from './components/Filter'
 import Modal from './components/Modal'
 
 @withI18n()
-@connect(({ user, loading }) => ({ user, loading }))
-class User extends PureComponent {
+@connect(({ product, loading }) => ({ product, loading }))
+class Product extends PureComponent {
+  componentDidMount() {
+    const { dispatch } = this.props
+    dispatch({
+      type: `product/queryCategory`,
+    })
+  }
   handleRefresh = newQuery => {
     const { location } = this.props
     const { query, pathname } = location
@@ -30,11 +36,11 @@ class User extends PureComponent {
   }
 
   handleDeleteItems = () => {
-    const { dispatch, user } = this.props
-    const { list, pagination, selectedRowKeys } = user
+    const { dispatch, product } = this.props
+    const { list, pagination, selectedRowKeys } = product
 
     dispatch({
-      type: 'user/multiDelete',
+      type: 'product/multiDelete',
       payload: {
         ids: selectedRowKeys,
       },
@@ -49,22 +55,26 @@ class User extends PureComponent {
   }
 
   get modalProps() {
-    const { dispatch, user, loading, i18n } = this.props
-    const { currentItem, modalVisible, modalType } = user
-
+    const { dispatch, product, loading, i18n } = this.props
+    const { categories, currentItem, modalVisible, modalType } = product
+    // console.log(product)
+    // dispatch({
+    //   type: `product/queryCategory`,
+    // })
     return {
       item: modalType === 'create' ? {} : currentItem,
+      categories: categories,
       visible: modalVisible,
       destroyOnClose: true,
       maskClosable: false,
-      confirmLoading: loading.effects[`user/${modalType}`],
+      confirmLoading: loading.effects[`product/${modalType}`],
       title: `${
-        modalType === 'create' ? i18n.t`Create User` : i18n.t`Update User`
+        modalType === 'create' ? i18n.t`Create Product` : i18n.t`Update Product`
       }`,
       centered: true,
       onOk: data => {
         dispatch({
-          type: `user/${modalType}`,
+          type: `product/${modalType}`,
           payload: data,
         }).then(() => {
           this.handleRefresh()
@@ -72,19 +82,18 @@ class User extends PureComponent {
       },
       onCancel() {
         dispatch({
-          type: 'user/hideModal',
+          type: 'product/hideModal',
         })
       },
     }
   }
 
   get listProps() {
-    const { dispatch, user, loading } = this.props
-    const { list, pagination, selectedRowKeys } = user
-
+    const { dispatch, product, loading } = this.props
+    const { list, pagination, selectedRowKeys } = product
     return {
       dataSource: list,
-      loading: loading.effects['user/query'],
+      loading: loading.effects['product/query'],
       pagination,
       onChange: page => {
         this.handleRefresh({
@@ -94,7 +103,7 @@ class User extends PureComponent {
       },
       onDeleteItem: id => {
         dispatch({
-          type: 'user/delete',
+          type: 'product/delete',
           payload: id,
         }).then(() => {
           this.handleRefresh({
@@ -107,7 +116,7 @@ class User extends PureComponent {
       },
       onEditItem(item) {
         dispatch({
-          type: 'user/showModal',
+          type: 'product/showModal',
           payload: {
             modalType: 'update',
             currentItem: item,
@@ -118,7 +127,7 @@ class User extends PureComponent {
         selectedRowKeys,
         onChange: keys => {
           dispatch({
-            type: 'user/updateState',
+            type: 'product/updateState',
             payload: {
               selectedRowKeys: keys,
             },
@@ -143,7 +152,7 @@ class User extends PureComponent {
       },
       onAdd() {
         dispatch({
-          type: 'user/showModal',
+          type: 'product/showModal',
           payload: {
             modalType: 'create',
           },
@@ -153,8 +162,8 @@ class User extends PureComponent {
   }
 
   render() {
-    const { user } = this.props
-    const { selectedRowKeys } = user
+    const { product } = this.props
+    const { selectedRowKeys } = product
 
     return (
       <Page inner>
@@ -182,11 +191,11 @@ class User extends PureComponent {
   }
 }
 
-User.propTypes = {
-  user: PropTypes.object,
+Product.propTypes = {
+  product: PropTypes.object,
   location: PropTypes.object,
   dispatch: PropTypes.func,
   loading: PropTypes.object,
 }
 
-export default User
+export default Product

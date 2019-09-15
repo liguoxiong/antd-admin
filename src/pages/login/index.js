@@ -31,9 +31,9 @@ class Login extends PureComponent {
 
     let footerLinks = [
       {
-        key: 'github',
-        title: <Icon type="github" />,
-        href: 'https://github.com/zuiidea/antd-admin',
+        key: 'facebook',
+        title: <Icon type="facebook" />,
+        href: 'https://facebook.com/lequochungs',
         blankTarget: true,
       },
     ]
@@ -94,16 +94,6 @@ class Login extends PureComponent {
               >
                 <Trans>Sign in</Trans>
               </Button>
-              <p>
-                <span>
-                  <Trans>Username</Trans>
-                  ：guest
-                </span>
-                <span>
-                  <Trans>Password</Trans>
-                  ：guest
-                </span>
-              </p>
             </Row>
           </form>
         </div>
