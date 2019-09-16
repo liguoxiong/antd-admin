@@ -58,7 +58,7 @@ class Login extends PureComponent {
           </div>
           <form>
             <FormItem hasFeedback>
-              {getFieldDecorator('username', {
+              {getFieldDecorator('email', {
                 rules: [
                   {
                     required: true,
@@ -67,7 +67,7 @@ class Login extends PureComponent {
               })(
                 <Input
                   onPressEnter={this.handleOk}
-                  placeholder={i18n.t`Username`}
+                  placeholder={i18n.t`Email`}
                 />
               )}
             </FormItem>
