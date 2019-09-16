@@ -30,8 +30,15 @@ class ProductModal extends Component {
   state = {
     previewVisible: false,
     previewImage: '',
-    fileList: this.props.item.image || [],
+    fileList: [],
     category: '',
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('componentWillReceiveProps', nextProps)
+    if (this.props !== nextProps) {
+      this.setState({ fileList: nextProps.item.image })
+    }
   }
   handleOk = () => {
     const { item = {}, onOk, form } = this.props
@@ -54,12 +61,12 @@ class ProductModal extends Component {
   handleCancel = () => this.setState({ previewVisible: false })
 
   handlePreview = async file => {
-    if (!file.url && !file.preview) {
+    if (!file.thumbUrl && !file.preview) {
       file.preview = await getBase64(file.originFileObj)
     }
 
     this.setState({
-      previewImage: file.url || file.preview,
+      previewImage: file.thumbUrl || file.preview,
       previewVisible: true,
     })
   }
@@ -89,7 +96,8 @@ class ProductModal extends Component {
         <div className="ant-upload-text">Upload</div>
       </div>
     )
-    console.log(this.props.item)
+    console.log('previewImage', this.state.previewImage)
+    console.log('fileList', this.state.fileLists)
     return (
       <Modal {...modalProps} onOk={this.handleOk}>
         <Form layout="horizontal">
@@ -212,37 +220,36 @@ class ProductModal extends Component {
             })(<Input />)}
           </FormItem>
           <FormItem label={i18n.t`Hình ảnh`} hasFeedback {...formItemLayout}>
-            {getFieldDecorator('image', {
+            {/* {getFieldDecorator('image', {
               initialValue: item.image,
               rules: [
                 {
                   required: true,
                 },
               ],
-            })(
-              <div className="clearfix">
-                <Upload
-                  action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                  listType="picture-card"
-                  fileList={fileList}
-                  onPreview={this.handlePreview}
-                  onChange={this.handleChange}
-                >
-                  {fileList.length >= 8 ? null : uploadButton}
-                </Upload>
-                <Modal
-                  visible={previewVisible}
-                  footer={null}
-                  onCancel={this.handleCancel}
-                >
-                  <img
-                    alt="example"
-                    style={{ width: '100%' }}
-                    src={previewImage}
-                  />
-                </Modal>
-              </div>
-            )}
+            })( */}
+            <div className="clearfix">
+              <Upload
+                listType="picture-card"
+                fileList={fileList}
+                onPreview={this.handlePreview}
+                onChange={this.handleChange}
+              >
+                {fileList && fileList.length >= 8 ? null : uploadButton}
+              </Upload>
+              <Modal
+                visible={previewVisible}
+                footer={null}
+                onCancel={this.handleCancel}
+              >
+                <img
+                  alt="example"
+                  style={{ width: '100%' }}
+                  src={previewImage}
+                />
+              </Modal>
+            </div>
+            {/* )} */}
           </FormItem>
         </Form>
       </Modal>
