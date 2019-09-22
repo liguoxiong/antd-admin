@@ -9,7 +9,7 @@ module.exports = {
   layouts: [
     {
       name: 'primary',
-      include: [/.*\/(dashboard|category|product)/],
+      include: [/.*/],
       exclude: [/(\/(en|zh))*\/login/],
     },
   ],

@@ -1,10 +1,10 @@
 import { pathMatchRegexp } from 'utils'
 import api from 'api'
 
-const { queryCategory } = api
+const { queryService } = api
 
 export default {
-  namespace: 'categoryDetail',
+  namespace: 'serviceDetail',
 
   state: {
     data: {},
@@ -13,7 +13,7 @@ export default {
   subscriptions: {
     setup({ dispatch, history }) {
       history.listen(({ pathname }) => {
-        const match = pathMatchRegexp('/category/:id', pathname)
+        const match = pathMatchRegexp('/service/:id', pathname)
         if (match) {
           dispatch({ type: 'query', payload: { id: match[1] } })
         }
@@ -23,7 +23,7 @@ export default {
 
   effects: {
     *query({ payload }, { call, put }) {
-      const data = yield call(queryCategory, payload)
+      const data = yield call(queryService, payload)
       const { success, message, status, ...other } = data
       if (success) {
         yield put({

@@ -81,6 +81,11 @@ export default {
       changeOrigin: true,
       pathRewrite: { '^/api': '/api' },
     },
+    '/images': {
+      target: 'http://localhost:8080/',
+      changeOrigin: true,
+      pathRewrite: { '^/images': '/images' },
+    },
   },
   alias: {
     api: resolve(__dirname, './src/services/'),

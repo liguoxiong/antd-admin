@@ -21,4 +21,22 @@ export default {
   queryCategory: '/categories/:id',
   updateCategory: 'PUT /categories/:id',
   removeCategory: 'DELETE /categories/:id',
+
+  queryBannerList: '/banners',
+  createBanner: 'POST /banners',
+  queryBanner: '/banners/:id',
+  updateBanner: 'PUT /banners/:id',
+  removeBanner: 'DELETE /banners/:id',
+
+  queryServiceList: '/services',
+  createService: 'POST /services',
+  queryService: '/services/:id',
+  updateService: 'PUT /services/:id',
+  removeService: 'DELETE /services/:id',
+
+  queryInfoList: '/info',
+  createInfo: 'POST /info',
+  queryInfo: '/info/:id',
+  updateInfo: 'PUT /info/:id',
+  removeInfo: 'DELETE /info/:id',
 }
