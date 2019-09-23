@@ -109,4 +109,6 @@ export default {
       'lodash',
     ],
   ],
+  publicPath: '/admin/',
+  base: '/admin/'
 }
