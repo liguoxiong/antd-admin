@@ -234,6 +234,7 @@ class ProductModal extends Component {
                 fileList={fileList}
                 onPreview={this.handlePreview}
                 onChange={this.handleChange}
+                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
               >
                 {fileList && fileList.length >= 8 ? null : uploadButton}
               </Upload>
