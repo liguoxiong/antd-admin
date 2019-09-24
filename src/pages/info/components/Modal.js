@@ -111,6 +111,16 @@ class InfoModal extends Component {
               ],
             })(<Input />)}
           </FormItem>
+          <FormItem label={i18n.t`Email`} hasFeedback {...formItemLayout}>
+            {getFieldDecorator('email', {
+              initialValue: item.email,
+              rules: [
+                {
+                  required: false,
+                },
+              ],
+            })(<Input />)}
+          </FormItem>
           <FormItem
             label={i18n.t`Số điện thoại`}
             hasFeedback
