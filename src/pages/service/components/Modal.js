@@ -112,36 +112,32 @@ class ServiceModal extends Component {
             })(<Input />)}
           </FormItem>
           <FormItem label={i18n.t`Hình ảnh`} hasFeedback {...formItemLayout}>
-            {getFieldDecorator('image', {
+            {/* {getFieldDecorator('image', {
               initialValue: item.image,
               rules: [
                 {
                   required: true,
                 },
               ],
-            })(
-              <Upload
-                name="avatar"
-                listType="picture-card"
-                className="avatar-uploader"
-                showUploadList={false}
-                beforeUpload={beforeUpload}
-                onChange={this.handleChange}
-                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-              >
-                {imageUrl ? (
-                  <img src={imageUrl} alt="avatar" style={{ width: '100%' }} />
-                ) : item.image ? (
-                  <img
-                    src={item.image}
-                    alt="avatar"
-                    style={{ width: '100%' }}
-                  />
-                ) : (
-                  uploadButton
-                )}
-              </Upload>
-            )}
+            })( */}
+            <Upload
+              name="avatar"
+              listType="picture-card"
+              className="avatar-uploader"
+              showUploadList={false}
+              beforeUpload={beforeUpload}
+              onChange={this.handleChange}
+              action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+            >
+              {imageUrl ? (
+                <img src={imageUrl} alt="avatar" style={{ width: '100%' }} />
+              ) : item.image ? (
+                <img src={item.image} alt="avatar" style={{ width: '100%' }} />
+              ) : (
+                uploadButton
+              )}
+            </Upload>
+            {/* )} */}
           </FormItem>
         </Form>
       </Modal>

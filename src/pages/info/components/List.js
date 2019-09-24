@@ -49,6 +49,11 @@ class List extends PureComponent {
         key: 'address',
       },
       {
+        title: <Trans>Email</Trans>,
+        dataIndex: 'email',
+        key: 'email',
+      },
+      {
         title: <Trans>Số điện thoại</Trans>,
         dataIndex: 'phone',
         key: 'phone',
