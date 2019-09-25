@@ -77,6 +77,12 @@ class InfoModal extends Component {
       )
     }
   }
+  componentWillReceiveProps(nextProps) {
+    console.log('componentWillReceiveProps', nextProps)
+    if (this.props !== nextProps) {
+      this.setState({ imageUrl: nextProps.item.logo })
+    }
+  }
 
   render() {
     const { item = {}, onOk, form, i18n, ...modalProps } = this.props
