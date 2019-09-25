@@ -34,6 +34,12 @@ export default {
   updateService: 'PUT /services/:id',
   removeService: 'DELETE /services/:id',
 
+  queryConstructionList: '/constructions',
+  createConstruction: 'POST /constructions',
+  queryConstruction: '/constructions/:id',
+  updateConstruction: 'PATCH /constructions/:id',
+  removeConstruction: 'DELETE /constructions/:id',
+
   queryInfoList: '/info',
   createInfo: 'POST /info',
   queryInfo: '/info/:id',
