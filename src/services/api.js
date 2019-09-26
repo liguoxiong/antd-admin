@@ -7,7 +7,7 @@ export default {
 
   queryProduct: '/products/:id',
   queryProductList: '/products',
-  updateProduct: 'PUT /products/:id',
+  updateProduct: 'PATCH /products/:id',
   createProduct: 'POST /products',
   removeProduct: 'DELETE /products/:id',
   removeProductList: 'POST /products/delete',
@@ -19,19 +19,19 @@ export default {
   queryCategoryList: '/categories',
   createCategory: 'POST /categories',
   queryCategory: '/categories/:id',
-  updateCategory: 'PUT /categories/:id',
+  updateCategory: 'PATCH /categories/:id',
   removeCategory: 'DELETE /categories/:id',
 
   queryBannerList: '/banners',
   createBanner: 'POST /banners',
   queryBanner: '/banners/:id',
-  updateBanner: 'PUT /banners/:id',
+  updateBanner: 'PATCH /banners/:id',
   removeBanner: 'DELETE /banners/:id',
 
   queryServiceList: '/services',
   createService: 'POST /services',
   queryService: '/services/:id',
-  updateService: 'PUT /services/:id',
+  updateService: 'PATCH /services/:id',
   removeService: 'DELETE /services/:id',
 
   queryConstructionList: '/constructions',
@@ -43,6 +43,6 @@ export default {
   queryInfoList: '/info',
   createInfo: 'POST /info',
   queryInfo: '/info/:id',
-  updateInfo: 'PUT /info/:id',
+  updateInfo: 'PATCH /info/:id',
   removeInfo: 'DELETE /info/:id',
 }
