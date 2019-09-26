@@ -30,7 +30,7 @@ class List extends PureComponent {
 
     const columns = [
       {
-        title: <Trans>Image</Trans>,
+        title: <Trans>Hình ảnh</Trans>,
         dataIndex: 'image',
         key: 'image',
         width: 72,
@@ -38,7 +38,7 @@ class List extends PureComponent {
         render: text => <Avatar style={{ marginLeft: 8 }} src={text} />,
       },
       {
-        title: <Trans>Title</Trans>,
+        title: <Trans>Tiêu đề</Trans>,
         dataIndex: 'title',
         key: 'title',
         render: (text, record) => (
@@ -46,17 +46,17 @@ class List extends PureComponent {
         ),
       },
       {
-        title: <Trans>Description</Trans>,
+        title: <Trans>Mô tả</Trans>,
         dataIndex: 'description',
         key: 'description',
       },
       {
-        title: <Trans>CreateAt</Trans>,
+        title: <Trans>Ngày tạo</Trans>,
         dataIndex: 'created_at',
         key: 'created_at',
       },
       {
-        title: <Trans>Operation</Trans>,
+        title: <Trans>Chức năng</Trans>,
         key: 'operation',
         fixed: 'right',
         render: (text, record) => {

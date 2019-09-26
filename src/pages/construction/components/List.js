@@ -35,10 +35,15 @@ class List extends PureComponent {
         key: 'image',
         width: 72,
         fixed: 'left',
-        render: text => <Avatar style={{ marginLeft: 8 }} src={text} />,
+        render: text => (
+          <Avatar
+            style={{ marginLeft: 8 }}
+            src={text[0].thumbUrl || text[0].url || null}
+          />
+        ),
       },
       {
-        title: <Trans>Title</Trans>,
+        title: <Trans>Tên Công trình</Trans>,
         dataIndex: 'title',
         key: 'title',
         render: (text, record) => (
@@ -46,17 +51,17 @@ class List extends PureComponent {
         ),
       },
       {
-        title: <Trans>Description</Trans>,
+        title: <Trans>Mô tả</Trans>,
         dataIndex: 'description',
         key: 'description',
       },
       {
-        title: <Trans>CreateAt</Trans>,
+        title: <Trans>Ngày tạo</Trans>,
         dataIndex: 'created_at',
         key: 'created_at',
       },
       {
-        title: <Trans>Operation</Trans>,
+        title: <Trans>Chức năng</Trans>,
         key: 'operation',
         fixed: 'right',
         render: (text, record) => {

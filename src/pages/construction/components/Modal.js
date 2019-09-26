@@ -66,12 +66,12 @@ class ConstructionModal extends Component {
   handleCancel = () => this.setState({ previewVisible: false })
 
   handlePreview = async file => {
-    if (!file.thumbUrl && !file.preview) {
+    if (!file.thumbUrl && !file.url && !file.preview) {
       file.preview = await getBase64(file.originFileObj)
     }
 
     this.setState({
-      previewImage: file.thumbUrl || file.preview,
+      previewImage: file.thumbUrl || file.url || file.preview,
       previewVisible: true,
     })
   }
@@ -93,7 +93,7 @@ class ConstructionModal extends Component {
       <Modal {...modalProps} onOk={this.handleOk}>
         <Form layout="horizontal">
           <FormItem
-            label={i18n.t`Loại sản phẩm`}
+            label={i18n.t`Tên công trình`}
             hasFeedback
             {...formItemLayout}
           >
