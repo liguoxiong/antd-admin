@@ -70,12 +70,12 @@ class ProductModal extends Component {
   handleCancel = () => this.setState({ previewVisible: false })
 
   handlePreview = async file => {
-    if (!file.thumbUrl && !file.preview) {
+    if (!file.thumbUrl && !file.url && !file.preview) {
       file.preview = await getBase64(file.originFileObj)
     }
 
     this.setState({
-      previewImage: file.thumbUrl || file.preview,
+      previewImage: file.thumbUrl || file.url || file.preview,
       previewVisible: true,
     })
   }
