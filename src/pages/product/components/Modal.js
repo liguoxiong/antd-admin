@@ -1,6 +1,15 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Form, Input, Modal, Cascader, Upload, Icon, Select } from 'antd'
+import {
+  Form,
+  Input,
+  Modal,
+  Cascader,
+  Upload,
+  Icon,
+  Select,
+  Checkbox,
+} from 'antd'
 import { Trans, withI18n } from '@lingui/react'
 import city from 'utils/city'
 import './Modal.less'
@@ -251,6 +260,16 @@ class ProductModal extends Component {
               </Modal>
             </div>
             {/* )} */}
+          </FormItem>
+          <FormItem label={i18n.t`Hiện ở trang chủ`}>
+            {getFieldDecorator('isShow', {
+              initialValue: item.isShow,
+              rules: [
+                {
+                  required: false,
+                },
+              ],
+            })(<Checkbox />)}
           </FormItem>
         </Form>
       </Modal>
