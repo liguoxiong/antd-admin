@@ -261,14 +261,10 @@ class ProductModal extends Component {
             </div>
             {/* )} */}
           </FormItem>
-          <FormItem label={i18n.t`Hiện ở trang chủ`}>
+          <FormItem label={i18n.t`Hiện ở trang chủ`} {...formItemLayout}>
             {getFieldDecorator('isShow', {
               initialValue: item.isShow,
-              rules: [
-                {
-                  required: false,
-                },
-              ],
+              valuePropName: 'checked',
             })(<Checkbox />)}
           </FormItem>
         </Form>
