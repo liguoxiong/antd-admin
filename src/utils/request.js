@@ -36,7 +36,7 @@ export default function request(options) {
   }
 
   options.url = url
-  if (method === 'get') {
+  if (method === 'GET') {
     options.params = cloneData
   }
   options.cancelToken = new CancelToken(cancel => {
