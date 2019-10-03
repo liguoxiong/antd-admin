@@ -69,7 +69,7 @@ class ProductModal extends Component {
             url: base64,
           })
         } else {
-          imageSubmit = item
+          imageSubmit.push(item)
         }
       }
       const data = {
