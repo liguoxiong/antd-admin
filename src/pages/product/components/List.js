@@ -38,7 +38,7 @@ class List extends PureComponent {
         render: text => (
           <Avatar
             style={{ marginLeft: 8 }}
-            src={text[0].thumbUrl || text[0].url || null}
+            src={text[0] ? text[0].url || text[0].thumbUrl : null}
           />
         ),
       },

@@ -52,15 +52,30 @@ class ProductModal extends Component {
   handleOk = () => {
     const { item = {}, onOk, form } = this.props
     const { validateFields, getFieldsValue } = form
+    const { fileList } = this.state
 
-    validateFields(errors => {
+    validateFields(async errors => {
       if (errors) {
         return
+      }
+      let imageSubmit = []
+      for (const item of fileList) {
+        if (item.originFileObj) {
+          const base64 = await getBase64(item.originFileObj)
+          imageSubmit.push({
+            uid: item.uid,
+            name: item.name,
+            status: item.status,
+            url: base64,
+          })
+        } else {
+          imageSubmit = item
+        }
       }
       const data = {
         ...getFieldsValue(),
         key: item.key,
-        image: this.state.fileList,
+        image: imageSubmit,
       }
       console.log(data)
       onOk(data)
@@ -70,12 +85,12 @@ class ProductModal extends Component {
   handleCancel = () => this.setState({ previewVisible: false })
 
   handlePreview = async file => {
-    if (!file.thumbUrl && !file.url && !file.preview) {
+    if (!file.url && !file.preview) {
       file.preview = await getBase64(file.originFileObj)
     }
 
     this.setState({
-      previewImage: file.thumbUrl || file.url || file.preview,
+      previewImage: file.url || file.preview,
       previewVisible: true,
     })
   }
@@ -105,8 +120,6 @@ class ProductModal extends Component {
         <div className="ant-upload-text">Upload</div>
       </div>
     )
-    console.log('previewImage', this.state.previewImage)
-    console.log('fileList', this.state.fileLists)
     return (
       <Modal {...modalProps} onOk={this.handleOk}>
         <Form layout="horizontal">
